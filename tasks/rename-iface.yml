@@ -1,0 +1,12 @@
+---
+
+- name: Rename our first and unique eth
+
+  when: ifnames.default in ansible_interfaces and ifnames.first not in ansible_interfaces
+  notify: ifrename first interface
+
+  lineinfile:
+    dest: "{{ etc.iftab }}"
+    create: True
+    regexp: "{{ ifnames.first }}"
+    line: "{{ ifnames.first }} mac {{ ansible_eth0.macaddress }}"

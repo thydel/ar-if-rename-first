@@ -1,0 +1,34 @@
+---
+
+- name: Remove default iface name auto directive from config
+
+  augeas:
+    command: rm
+    path: /files/{{ etc.ifaces }}/auto[child::1="{{ ifnames.default }}"]
+
+- name: Remove default iface name hotplug directive from config
+
+  augeas:
+    command: rm
+    path: /files/{{ etc.ifaces }}/allow-hotplug[child::1="{{ ifnames.default }}"]
+
+- name: Remove default iface name from config
+
+  augeas:
+    command: rm
+    path: /files/{{ etc.ifaces }}/iface[.="{{ ifnames.default }}"]
+
+- name: Add first iface name into config
+
+  augeas:
+    command: set
+    path: /files/{{ etc.ifaces }}/auto[child::1="{{ ifnames.first }}"]/1
+    value: "{{ ifnames.first }}"
+
+- name: Set first iface name params into config
+
+  augeas:
+    commands:
+      set /files/{{ etc.ifaces }}/iface[.=\"{{ ifnames.first }}\"] {{ ifnames.first }}
+      set /files/{{ etc.ifaces }}/iface[.=\"{{ ifnames.first }}\"]/family inet
+      set /files/{{ etc.ifaces }}/iface[.=\"{{ ifnames.first }}\"]/method dhcp

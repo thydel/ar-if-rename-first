@@ -1,0 +1,5 @@
+---
+
+ifnames:
+  default: eth0
+  first: admin2

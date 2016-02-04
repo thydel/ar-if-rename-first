@@ -1,0 +1,11 @@
+---
+
+- name: ifrename first interface
+
+  args:
+    executable: /bin/bash
+
+  shell:
+    ip link set dev {{ ifnames.default }} down &&
+    ifrename &&
+    ip link set dev {{ ifnames.first }} up

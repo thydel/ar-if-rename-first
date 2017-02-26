@@ -2,4 +2,8 @@
 
 ifnames:
   default: eth0
-  first: admin2
+  first: '{{ admin_network }}'
+
+etc:
+  iftab:     /etc/iftab
+  ifaces:    /etc/network/interfaces

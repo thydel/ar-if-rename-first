@@ -2,6 +2,7 @@
 
 - name: ifrename first interface
 
+  become: True
   args:
     executable: /bin/bash
 

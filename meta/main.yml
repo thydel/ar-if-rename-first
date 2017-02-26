@@ -4,4 +4,4 @@ dependencies:
 
   - name: common-tools
     src: https://github.com/thyepi/ar-common-tools.git
-    version: master
+    version: tde

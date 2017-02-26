@@ -1,4 +1,4 @@
 ---
 
--  {  include:  rename-iface.yml,  tags:  rename-iface  }
--  {  include:  fix-config.yml,    tags:  fix-config    }
+- { include: rename-iface.yml, tags: rename-iface, become: True }
+- { include: fix-config.yml,   tags: fix-config,   become: True }

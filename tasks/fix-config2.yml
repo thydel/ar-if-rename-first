@@ -1,0 +1,17 @@
+---
+
+- lineinfile:
+    path: '{{ etc.ifaces }}'
+    regexp: '{{ item.regexp }}'
+    line: '{{ item.line }}'
+  loop:
+    - regexp: ^allow-hotplug {{ default }}
+      line: auto {{ first }}
+    - regexp: ^iface {{ default }} inet dhcp
+      line: iface {{ first }} inet dhcp
+  loop_control:
+    label: '{{ item.line }}'
+  vars:
+    default: '{{ ifnames.default }}'
+    first: '{{ ifnames.first }}'
+  name: Fix hotplug directive and dev name in config
